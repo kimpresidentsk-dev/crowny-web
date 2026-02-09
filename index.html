@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROWNY - Global Beautie Present</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">CROWNY</div>
+        <nav class="nav">
+            <a href="#home">HOME</a>
+            <a href="#wallet">WALLET</a>
+            <a href="#credit">CREDIT</a>
+            <a href="#trading">TRADING</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <h1>CROWNY</h1>
+            <p>GLOBAL BEAUTIE PRESENT</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card" onclick="showSection('cosmetic')">
+                <span class="icon">💄</span>
+                <h3>CROWNY PRESENT</h3>
+                <p>Cosmetic</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('credit')">
+                <span class="icon">💳</span>
+                <h3>CREDIT</h3>
+                <p>Token Package</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('fordr')">
+                <span class="icon">💊</span>
+                <h3>For Dr.</h3>
+                <p>Health Supplements</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('medical')">
+                <span class="icon">🏥</span>
+                <h3>MEDICAL DEVICE</h3>
+                <p>Medical Equipment</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('avls')">
+                <span class="icon">✨</span>
+                <h3>AVLs</h3>
+                <p>Premium Solutions</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('private')">
+                <span class="icon">🔒</span>
+                <h3>PRIVATE SOLUTION</h3>
+                <p>Exclusive Service</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('art')">
+                <span class="icon">🎨</span>
+                <h3>ART</h3>
+                <p>NFT Marketplace</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('trading')">
+                <span class="icon">📈</span>
+                <h3>TRADING</h3>
+                <p>Prop Trading</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('wallet')">
+                <span class="icon">💰</span>
+                <h3>WALLET</h3>
+                <p>Digital Wallet</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('gallery')">
+                <span class="icon">🖼️</span>
+                <h3>GALLERY</h3>
+                <p>Photo Gallery</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('board')">
+                <span class="icon">📰</span>
+                <h3>BOARD</h3>
+                <p>Community</p>
+            </div>
+            
+            <div class="service-card" onclick="showSection('qna')">
+                <span class="icon">❓</span>
+                <h3>Q&A</h3>
+                <p>Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wallet Section -->
+    <section id="wallet" class="section">
+        <div class="container">
+            <h2>💰 WALLET</h2>
+            <div class="wallet-card">
+                <div id="wallet-status">
+                    <button onclick="connectWallet()" class="btn-primary">Connect Wallet</button>
+                </div>
+                <div id="wallet-info" style="display:none;">
+                    <p>Address: <span id="wallet-address"></span></p>
+                    <p>Balance: <span id="wallet-balance">0</span> CROWNY</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credit Section -->
+    <section id="credit" class="section">
+        <div class="container">
+            <h2>💳 CREDIT SYSTEM</h2>
+            <div class="credit-balance">
+                <h3>Your Credits: <span id="user-credits">0</span></h3>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <h3>🎭 Mellow Mask Pack</h3>
+                    <p class="price">₩25,500</p>
+                    <p class="reward">+2,550 Credits</p>
+                    <button onclick="buyProduct(2550)" class="btn-buy">Purchase</button>
+                </div>
+                
+                <div class="product-card">
+                    <h3>✨ Energy Cream</h3>
+                    <p class="price">₩76,000</p>
+                    <p class="reward">+7,600 Credits</p>
+                    <button onclick="buyProduct(7600)" class="btn-buy">Purchase</button>
+                </div>
+                
+                <div class="product-card">
+                    <h3>☀️ Sun Cream</h3>
+                    <p class="price">₩77,000</p>
+                    <p class="reward">+7,700 Credits</p>
+                    <button onclick="buyProduct(7700)" class="btn-buy">Purchase</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trading Section -->
+    <section id="trading" class="section">
+        <div class="container">
+            <h2>📈 PROP TRADING</h2>
+            
+            <div class="trading-balance">
+                <div>CROWNY: <span id="crowny-balance">10000</span></div>
+                <div>MATIC: <span id="matic-balance">100</span></div>
+            </div>
+            
+            <div class="trading-pairs">
+                <div class="pair-card active" onclick="selectPair('CROWNY/MATIC', 0.0235)">
+                    <div class="pair-name">CROWNY/MATIC</div>
+                    <div class="pair-price">0.0235</div>
+                    <div class="pair-change positive">+2.45%</div>
+                </div>
+            </div>
+            
+            <div class="trading-form">
+                <div class="order-type">
+                    <button class="btn-buy active" onclick="setOrderType('buy')">BUY</button>
+                    <button class="btn-sell" onclick="setOrderType('sell')">SELL</button>
+                </div>
+                
+                <input type="number" id="trade-amount" placeholder="Amount" class="input">
+                <div class="trade-info">
+                    <span>Price: <span id="current-price">0.0235</span> MATIC</span>
+                    <span>Total: <span id="trade-total">0</span> MATIC</span>
+                </div>
+                <button onclick="executeTrade()" class="btn-trade">Execute Trade</button>
+            </div>
+            
+            <div id="trade-history"></div>
+        </div>
+    </section>
+
+    <!-- Art NFT Section -->
+    <section id="art" class="section">
+        <div class="container">
+            <h2>🎨 NFT MARKETPLACE</h2>
+            <button onclick="showMintForm()" class="btn-primary">Mint New NFT</button>
+            
+            <div id="mint-form" style="display:none;" class="mint-form">
+                <input type="text" id="nft-name" placeholder="NFT Name" class="input">
+                <textarea id="nft-description" placeholder="Description" class="input"></textarea>
+                <input type="number" id="nft-price" placeholder="Price (MATIC)" class="input">
+                <button onclick="mintNFT()" class="btn-primary">Mint</button>
+            </div>
+            
+            <div id="nft-grid" class="nft-grid"></div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2>🖼️ GALLERY</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image">🏡</div>
+                    <h3>Crowny Private House</h3>
+                    <p>2026.01.17</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">✨</div>
+                    <h3>Product Launch</h3>
+                    <p>2026.01.15</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Sections (placeholder) -->
+    <section id="cosmetic" class="section"><div class="container"><h2>💄 CROWNY PRESENT</h2><p>Cosmetic products coming soon...</p></div></section>
+    <section id="fordr" class="section"><div class="container"><h2>💊 For Dr.</h2><p>Health supplements coming soon...</p></div></section>
+    <section id="medical" class="section"><div class="container"><h2>🏥 Medical Device</h2><p>Medical equipment coming soon...</p></div></section>
+    <section id="avls" class="section"><div class="container"><h2>✨ AVLs</h2><p>Premium solutions coming soon...</p></div></section>
+    <section id="private" class="section"><div class="container"><h2>🔒 Private Solution</h2><p>Exclusive services coming soon...</p></div></section>
+    <section id="board" class="section"><div class="container"><h2>📰 Board</h2><p>Community board coming soon...</p></div></section>
+    <section id="qna" class="section"><div class="container"><h2>❓ Q&A</h2><p>Support center coming soon...</p></div></section>
+
+    <script src="script.js"></script>
+</body>
+</html>
